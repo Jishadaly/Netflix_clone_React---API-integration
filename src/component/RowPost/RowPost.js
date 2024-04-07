@@ -41,18 +41,26 @@ function RowPost(props) {
 
   return (
     <div className='row'>
-     <h2> { props.title } </h2>
-      <div className='posters'>
-         
-         {
-          movie.map((obj)=> 
-          <img onClick={()=> handleCard ( obj.id ) } className={ props.isSmall ? 'smallPoster' : 'poster' } alt='poster' src={`${imageUrl + obj.backdrop_path}`} />
-          )
-         }
-         
+  <h2>{props.title}</h2>
+  <div className='posters'>
+    {movie.map((obj) => (
+      <div key={obj.id} className='poster-container'>
+        <img
+          onClick={() => handleCard(obj.id)}
+          className={props.isSmall ? 'smallPoster' : 'poster'}
+          alt={obj.title} // Set alt text to the movie title for accessibility
+          src={`${imageUrl + obj.backdrop_path}`}
+        />
+        <p className='movie-info'>
+          {obj.title} ({obj.release_date ? obj.release_date.substring(0, 4) : 'N/A'})
+        </p>
       </div>
-        { url && <YouTube  videoId={url.key} opts={opts} /> } 
-    </div>
+    ))}
+  </div>
+  {url && <YouTube videoId={url.key} opts={opts} />}
+</div>
+
+  
   )
 }
 

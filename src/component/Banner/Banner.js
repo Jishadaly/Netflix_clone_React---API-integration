@@ -5,14 +5,17 @@ import { API_KEY , imageUrl } from '../../constants/constants'
 
 
 function Banner() {
-  const [movie , setMovie] = useState()
-  const [count , setCount] = useState(0)
+  const [movie , setMovie] = useState();
+
+  const getRandomInt = max => Math.floor(Math.random() * max);
+  const numeric = getRandomInt(20);
+  
   
   useEffect(()=>{
     
     axios.get(`https://api.themoviedb.org/3/trending/all/week?api_key=${API_KEY}&language=en-US`).then((response)=> {
-       setMovie(response.data.results[count]);
-       setCount(prevCount => prevCount + 1);
+      
+       setMovie(response.data.results[numeric]);
     })
     
   },[])
@@ -34,4 +37,4 @@ function Banner() {
   )
 }
 
-export default Banner
+export default Banner 
