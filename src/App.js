@@ -9,6 +9,7 @@ import Signup from "./component/SignUp/Signup";
 
 
 function App() {
+  console.log("Runnning") 
   return (
     <Router>
     <div className= "App" >
